@@ -15,7 +15,7 @@ Some example project ideas from previous classes:
 
 ## Requirements:
 
-1. You should have least five models. You do not have to have all of these built out on day one. But by the end of the week, you should have at least five models.
+1. You should have four-to-five models. You do not have to have all of these built out on day one. But by the end of the week, you should have at least four-to-five models.
 
 2. Some methods in your models. There should be at least twenty methods total in your models. These are to be used to better extract data from your tables. Think Flatiron BnB Lab
 
