@@ -1,0 +1,16 @@
+<h1><%= @user.full_name %></h1>
+<%= link_to "Edit", edit_user_path(@user) %>
+<%= link_to "Delete",@user, method: :delete %>
+<div><%= image_tag @user.image_url %> </div>
+<div>
+<li>Cohort <%= link_to @cohort.name, @cohort %></li>
+<li><%= @user.github_link %></li>
+</div>
+<h2>Projects:</h2>
+<% @projects.each do |project| %>
+<div>
+<li><%= project.title %></li>
+<li>Module <%= project.mod_created %></li>
+<li><%= project.github_link %></li>
+</div>
+<% end %>

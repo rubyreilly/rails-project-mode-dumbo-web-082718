@@ -1,0 +1,4 @@
+<h1>Cohort <%= @cohort.name %></h1>
+<% @users.each do |user| %>
+<%= link_to user.full_name, user%>
+<% end %>

@@ -1,0 +1,6 @@
+<% @cohorts.each do |cohort| %>
+<% if cohort.current_mod <= 5 %>
+<%= link_to "Mod #{cohort.current_mod}", cohort_path(cohort) %>
+<% end %>
+
+<% end %>
