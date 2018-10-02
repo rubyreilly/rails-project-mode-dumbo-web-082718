@@ -1,0 +1,9 @@
+<%= form_with url:sessions_path do |f| %>
+
+<div><%= f.label :username %></div>
+<div><%= f.text_field :username,:autocomplete => :off%></div>
+<div><%= f.label :password %></div>
+<div><%= f.password_field :password %></div>
+
+<div><%= f.submit "Log in"%></div>
+<% end %>

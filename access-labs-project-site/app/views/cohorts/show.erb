@@ -1,4 +1,6 @@
 <h1>Cohort <%= @cohort.name %></h1>
+<h2>Current Mod: <%= @cohort.current_mod %></h2>
 <% @users.each do |user| %>
-<%= link_to user.full_name, user%>
+<li>
+<%= link_to user.full_name, user%></li>
 <% end %>

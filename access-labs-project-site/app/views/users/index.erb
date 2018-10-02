@@ -1,5 +1,8 @@
 <h1>User Index</h1>
 <div><%= link_to "New User", new_user_path %></div>
 <% @users.each do |user| %>
-<div><%= link_to user.full_name, user %></div>
+<div><li><%= link_to user.full_name, user %></li></div>
 <% end %>
+
+<%= link_to "Sign up", new_user_path %>
+<%= link_to "Log in", new_session_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_01_192920) do
+ActiveRecord::Schema.define(version: 2018_10_02_195712) do
 
   create_table "cohorts", force: :cascade do |t|
     t.integer "current_mod"
@@ -25,21 +25,16 @@ ActiveRecord::Schema.define(version: 2018_10_01_192920) do
     t.string "github_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_projects", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "users", force: :cascade do |t|
     t.integer "cohort_id"
     t.string "first_name"
     t.string "last_name"
-    t.string "email"
-    t.string "password"
+    t.string "username"
+    t.string "password_digest"
     t.string "image_url"
     t.string "github_link"
     t.datetime "created_at", null: false

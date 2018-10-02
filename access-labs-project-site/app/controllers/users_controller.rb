@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show
     @projects = @user.projects
     @cohort = @user.cohort
+
   end
 
   def new
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
       @user.save
+      session[:user_id] = @user.id
       redirect_to @user
     else
       flash.now[:error] = @user.errors.full_messages
@@ -52,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:cohort_id, :first_name, :last_name, :email, :password, :image_url, :github_link)
+    params.require(:user).permit(:cohort_id, :first_name, :last_name, :username, :password, :image_url, :github_link)
   end
 
 end
