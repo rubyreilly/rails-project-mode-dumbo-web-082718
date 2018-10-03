@@ -1,0 +1,32 @@
+.auth-nav {
+  background-color: #990d16;
+  display: flex;
+  justify-content: space-between;
+}
+
+#left-nav {
+  color: white;
+}
+
+#right-nav {
+  color: red;
+}
+
+.nav-section {
+  background-color: blue;
+  display: flex;
+}
+
+.nav-button {
+  min-width: 70px;
+  width: 10vw;
+  height: 10vh;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-button > a {
+    color: white;
+}

@@ -1,6 +1,11 @@
-<h1>Project Index</h1>
+<h1>Hello <%= @user.full_name %>!</h1>
+<%= link_to "New Project", new_user_project_path(@user) %>
+<%= link_to "Edit User", edit_user_path(@user) %>
+<%= link_to "Delete User",@user, method: :delete %>
 <% @projects.each do |project| %>
 <div><%= image_tag project.image_url %></div>
-<div><%=project.title %></div>
-<div><%=link_to project.user.full_name, project.user %></div>
+<div><%=project.title%></div>
+<div>Created in Mod <%=project.mod_created%></div>
+<%= link_to "Edit Project", edit_user_project_path(user_id: @user, id: project) %>
+<%= link_to "Delete Project", user_project_path(user_id: @user, id: project) , method: :delete %>
 <% end %>

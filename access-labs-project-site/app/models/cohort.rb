@@ -5,6 +5,7 @@ class Cohort < ApplicationRecord
   attr_reader :name, :increment_mod
 
 
+
   def name
     month_day = self.start_date.strftime('%m%d')
     year = self.start_date.strftime('%Y')[2..3]

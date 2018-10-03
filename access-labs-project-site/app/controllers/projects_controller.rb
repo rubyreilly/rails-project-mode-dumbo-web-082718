@@ -1,40 +1,65 @@
 class ProjectsController < ApplicationController
 
   before_action :find_project, only: [:edit, :update, :destroy]
-  before_action :find_user, only: [ :new, :create, :edit, :update, :destroy]
+  before_action :find_user, only: [:index, :new, :create, :edit, :update, :destroy]
+  # before_action :"authenticate!"
 
 
   def index
+    authenticate!
+    if (authenticated?(@user.id))
+      @projects = Project.where(user_id: @user.id)
+    else
+      redirect_to root_path
+  end
+
+  end
+
+  def all
     @projects = Project.all
   end
 
   def new
-    @project = Project.new
-    @cohorts = Cohort.all 
+    authenticate!
+    if (authenticated?(@user.id))
+      @project = Project.new
+      @cohorts = Cohort.all
+    else
+      flash.now[:message] = "You can only create projects on your profile."
+      redirect_to @user
+    end
   end
 
   def create
-    @project = Project.new(project_params)
-    if @project.valid?
-      @project.save
 
-      # UserProject.create(user:project_params[:user_ids])
-      redirect_to projects_path
-    else
-      flash.now[:error] = @project.errors.full_messages
-      render :new
-    end
+    authenticate!
+      @project = Project.new(project_params)
+      @user.projects << @project
+      if (authenticated?(@user.id)) && @project.save
+        flash.now[:message] = "New Project Successfully Create!"
+        redirect_to @user
+      else
+        flash.now[:error] = @project.errors.full_messages
+        render :new
+      end
   end
 
 
   def edit
-    @cohorts = Cohort.all
+    authenticate!
+    if (authenticated?(@user.id))
+      @cohorts = Cohort.all
+    else
+      flash.now[:message] = "You can only edit projects on your profile."
+      redirect_to @user
+    end
   end
 
   def update
-    @project.update(project_params)
-    if @project.valid?
-      redirect_to @project
+    authenticate!
+    if (authenticated?(@user.id)) && @project.update(project_params)
+      flash.now[:message] = "Your edit was saved."
+      redirect_to user_projects_path(user_id: @user, id: @project)
     else
       flash.now[:error] = @project.errors.full_messages
       render :edit
@@ -42,9 +67,14 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-
-    @project.destroy
-    redirect_to user_projects_path
+    authenticate!
+    if (authenticated?(@user.id))
+      @project.destroy
+      redirect_to user_projects_path
+    else
+      flash.now[:message] = "You can only delete projects on your profile."
+      redirect_to @user
+    end
   end
 
   private
@@ -54,7 +84,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:title, :mod_created, :github_link)
+    params.require(:project).permit(:title, :mod_created, :github_link, :image_url)
   end
 
   def find_user

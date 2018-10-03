@@ -7,9 +7,11 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
+      log_in_user(@user.id)
+      flash[:message] = "You are logged in!"
       redirect_to @user
     else
+      flash[:errors] = ["That didn't match anything we have in our database"]
       redirect_to new_session_path
     end
   end
