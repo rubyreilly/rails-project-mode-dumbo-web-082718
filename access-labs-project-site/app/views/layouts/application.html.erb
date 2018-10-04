@@ -5,8 +5,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -14,6 +16,7 @@
     <nav class="auth-nav">
           <div id="left-nav" class="nav-section">
             <div class="nav-button"><%= link_to "Home", root_path %></div>
+            <div class="nav-button"><%= link_to "Cohorts", cohorts_path %></div>
             <div class="nav-button"><%= link_to "Students", users_path %></div>
             <div class="nav-button"><%= link_to "Projects", '/projects' %></div>
           </div>
@@ -24,7 +27,7 @@
           </div>
           <% else %>
           <div id="right-nav" class="nav-section">
-            <div class="nav-button"><%= link_to "Profile", user_projects_path(@current_user) %></div>
+            <div class="nav-button"><%= link_to "Account", user_projects_path(@current_user) %></div>
             <div class="nav-button"><%= form_tag sessions_path, method: :delete do %>
                 <%= submit_tag "Log out" %>
               <% end %>

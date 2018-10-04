@@ -1,5 +1,10 @@
-<h1>User Index</h1>
-<div><%= link_to "New User", new_user_path %></div>
+<div class="title-header">Students</div>
+<div class="student-index-container">
 <% @users.each do |user| %>
-<div><li><%= link_to user.full_name, user %></li></div>
+<div class="student-info-container mod<%=user.cohort.current_mod%>">
+<div class="profile-thumbnail"><%= image_tag user.image_url, class: "profile-image-thumbnail" %></div>
+<div><%= link_to user.full_name, user %></div>
+<div><%= link_to user.cohort.name, cohorts_path(user.cohort) %></div>
+</div>
 <% end %>
+</div>

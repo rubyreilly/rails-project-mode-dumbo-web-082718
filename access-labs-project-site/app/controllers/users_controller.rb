@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       flash[:errors] = @user.errors.full_messages
-      render :new
+      redirect_to new_user_path
     end
   end
 
@@ -44,6 +44,7 @@ class UsersController < ApplicationController
 
   def destroy
     log_out!
+    @user.projects.destroy_all
     @user.destroy
     redirect_to new_session_path
   end

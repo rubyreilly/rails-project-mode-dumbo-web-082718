@@ -1,6 +1,10 @@
-<h1>Project Index</h1>
+<div class="title-header">Projects</div>
+<div class="student-index-container">
 <% @projects.each do |project| %>
-<div><%= image_tag project.image_url %></div>
+<div class="student-info-container mod<%=project.mod_created%>">
+<div class="project-thumbnail"><%= image_tag project.image_url %></div>
 <div><%=project.title %></div>
 <div><%=link_to project.user.full_name, project.user %></div>
+</div>
 <% end %>
+</div>

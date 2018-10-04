@@ -2,11 +2,11 @@ class ProjectsController < ApplicationController
 
   before_action :find_project, only: [:edit, :update, :destroy]
   before_action :find_user, only: [:index, :new, :create, :edit, :update, :destroy]
-  # before_action :"authenticate!"
+  before_action :"authenticate!", only: [:index, :new, :create, :edit, :update, :destroy]
 
 
   def index
-    authenticate!
+    # authenticate!
     if (authenticated?(@user.id))
       @projects = Project.where(user_id: @user.id)
     else
@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    authenticate!
+    # authenticate!
     if (authenticated?(@user.id))
       @project = Project.new
       @cohorts = Cohort.all
@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
 
   def create
 
-    authenticate!
+    # authenticate!
       @project = Project.new(project_params)
       @user.projects << @project
       if (authenticated?(@user.id)) && @project.save
@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
 
 
   def edit
-    authenticate!
+    # authenticate!
     if (authenticated?(@user.id))
       @cohorts = Cohort.all
     else
@@ -56,7 +56,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    authenticate!
+    # authenticate!
     if (authenticated?(@user.id)) && @project.update(project_params)
       flash.now[:message] = "Your edit was saved."
       redirect_to user_projects_path(user_id: @user, id: @project)
@@ -67,7 +67,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    authenticate!
+    # authenticate!
     if (authenticated?(@user.id))
       @project.destroy
       redirect_to user_projects_path
