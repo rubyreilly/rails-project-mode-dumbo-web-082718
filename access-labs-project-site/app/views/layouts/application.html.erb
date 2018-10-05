@@ -15,21 +15,21 @@
   <header>
     <nav class="auth-nav">
           <div id="left-nav" class="nav-section">
-            <div class="nav-button"><%= link_to "Home", root_path %></div>
-            <div class="nav-button"><%= link_to "Cohorts", cohorts_path %></div>
-            <div class="nav-button"><%= link_to "Students", users_path %></div>
-            <div class="nav-button"><%= link_to "Projects", '/projects' %></div>
+            <div class="nav-button"><%= link_to "HOME", root_path %></div>
+            <div class="nav-button"><%= link_to "COHORTS", cohorts_path %></div>
+            <div class="nav-button"><%= link_to "STUDENTS", users_path %></div>
+            <div class="nav-button"><%= link_to "PROJECTS", '/projects' %></div>
           </div>
           <% unless @current_user %>
           <div id="right-nav" class="nav-section">
-            <div class="nav-button"><a href="<%= new_session_path %>">Log in</a></div>
-            <div class="nav-button"><a href="<%= new_user_path %>">Sign up</a></div>
+            <div class="nav-button"><a href="<%= new_session_path %>">LOG IN</a></div>
+            <div class="nav-button"><a href="<%= new_user_path %>">SIGN UP</a></div>
           </div>
           <% else %>
           <div id="right-nav" class="nav-section">
-            <div class="nav-button"><%= link_to "Account", user_projects_path(@current_user) %></div>
+            <div class="nav-button"><%= link_to "ACCOUNT", user_projects_path(@current_user) %></div>
             <div class="nav-button"><%= form_tag sessions_path, method: :delete do %>
-                <%= submit_tag "Log out" %>
+                <%= submit_tag "LOG OUT" %>
               <% end %>
             </div>
           </div>

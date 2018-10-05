@@ -5,9 +5,9 @@ class User < ApplicationRecord
   belongs_to :cohort
   has_many :projects
 
-  validates :first_name, :last_name, :username, :password, presence: true
+  validates :first_name, :last_name, :username, presence: true
   validates :username, uniqueness: true
-  validate :image_checker
+  # validate :image_checker
 
   attr_reader :full_name, :password
 
@@ -32,11 +32,16 @@ class User < ApplicationRecord
     begin
       url = URI.parse(self.image_url)
       Net::HTTP.start(url.host, url.port) do |http|
-        return http.head(url.request_uri)['Content-Type'].start_with? 'image'
+        if http.head(url.request_uri)['Content-Type'].start_with? 'image'
+          self.errors.add(:image_url, "is not an image")
+        end
       end
     rescue
-      false
+      self.errors.add(:image_url, "is not a working url")
     end
   end
+
+
+
 
 end

@@ -7,6 +7,10 @@ img {
   object-fit: contain;
 }
 
+a {
+  color: black;
+}
+
 .auth-nav {
   background-color: #16b3d9;
   display: flex;
@@ -73,6 +77,9 @@ img {
   justify-self: center;
 }
 
+.home-icon > a {
+  color: white;
+}
 
 #cohorts {
   grid-area: bottom-left;
@@ -114,11 +121,13 @@ img {
 
 }
 
+
 .mod1{
   border-style: solid;
   border-color: #75b74f;
   border-width: 4px;
 }
+
 .mod2{
   border-style: solid;
   border-color: #e0a945;
@@ -171,6 +180,7 @@ img {
   text-align: center;
   border-radius: 12px;
 }
+
 
 .profile-image-thumbnail {
   height: 100%;

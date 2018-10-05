@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.all.sort_by{|user| user.cohort.current_mod}
   end
 
   def show
-    @projects = @user.projects
+    @projects = @user.projects.sort_by{|project| project.mod_created}.reverse
     @cohort = @user.cohort
 
   end
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in_user(@user.id)
       flash[:message] = "You are registered!"
-      redirect_to @user
+      redirect_to user_projects_path(@user)
     else
       flash[:errors] = @user.errors.full_messages
       redirect_to new_user_path
@@ -35,8 +35,9 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     if @user.valid?
-      redirect_to @user
+      redirect_to user_projects_path(@user)
     else
+      @cohorts = Cohort.all
       flash.now[:errors] = @user.errors.full_messages
       render :edit
     end

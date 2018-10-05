@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   end
 
   def all
-    @projects = Project.all
+    @projects = Project.all.sort_by{|project| project.mod_created}.reverse
   end
 
   def new
@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
       @user.projects << @project
       if (authenticated?(@user.id)) && @project.save
         flash.now[:message] = "New Project Successfully Create!"
-        redirect_to @user
+        redirect_to user_projects_path(@user)
       else
         flash.now[:error] = @project.errors.full_messages
         render :new

@@ -9,7 +9,7 @@
 <div><%= f.label :mod_created, "Created in Mod" %></div>
 <div><%= f.select :mod_created,  options_for_select([1, 2, 3, 4, 5]) %></div>
 
-<div><%= f.label :github_link, "Github Link" %></div>
+<div><%= f.label :github_link, "Github Link" %><%= link_to "(Your Github)", @user.github_link, target: :_blank %></div>
 <div><%= f.text_field :github_link %></div>
 
 <div><%= f.label :image_url, "Image URL" %></div>
