@@ -2,9 +2,13 @@
 <div class="student-index-container">
 <% @users.each do |user| %>
 <div class="student-info-container mod<%=user.cohort.current_mod%>">
-<div class="profile-thumbnail"><%= image_tag user.image_url, class: "profile-image-thumbnail" %></div>
-<div><%= link_to user.full_name, user %></div>
-<div><%= link_to user.cohort.name, cohorts_path(user.cohort) %></div>
+  <div class="student-info-top">
+    <%= image_tag user.image_url, class: "profile-image-thumbnail", class:"profile-thumbnail"%>
+  </div>
+  <div class="student-info-bottom">
+    <p><%= link_to user.full_name, user %></p>
+    <p><%= link_to "Cohort #{user.cohort.name}", cohorts_path(user.cohort) %></p>
+  </div>
 </div>
 <% end %>
 </div>

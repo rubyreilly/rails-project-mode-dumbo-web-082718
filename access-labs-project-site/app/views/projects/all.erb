@@ -2,9 +2,13 @@
 <div class="student-index-container">
 <% @projects.each do |project| %>
 <div class="student-info-container mod<%=project.mod_created%>">
-<div class="project-thumbnail"><%= image_tag project.image_url %></div>
-<div><%=project.title %></div>
-<div><%=link_to project.user.full_name, project.user %></div>
+  <div class="student-info-top">
+    <%= image_tag project.image_url, class:"project-thumbnail" %>
+  </div>
+  <div class="student-info-bottom">
+    <p><%=project.title %></p>
+    <p><%=link_to project.user.full_name, project.user %></p>
+  </div>
 </div>
 <% end %>
 </div>

@@ -2,9 +2,9 @@
 <div class="cohort-index-container">
 <% @cohorts.each do |cohort| %>
 <% if cohort.current_mod <= 5 %>
-<div class="cohort-index-button mod<%=cohort.current_mod%>"><%= link_to "Mod #{cohort.current_mod}", cohort_path(cohort) %></div>
+<%= link_to "Mod #{cohort.current_mod}", cohort_path(cohort), class:"cohort-index-button mod#{cohort.current_mod}" %>
 <% else %>
-<div class="cohort-index-button mod<%=cohort.current_mod%>"><%= link_to "Cohort #{cohort.name}", cohort_path(cohort) %></div>
+<%= link_to "Cohort #{cohort.name}", cohort_path(cohort), class:"cohort-index-button mod#{cohort.current_mod}" %>
 <% end %>
 <% end %>
 </div>

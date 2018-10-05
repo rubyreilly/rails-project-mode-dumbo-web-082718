@@ -1,17 +1,19 @@
 <div class="title-header">
 <% if @cohort.current_mod <= 5 %>
-<div>Cohort <%= @cohort.name %></div>
-<div>Current Mod: <%= @cohort.current_mod %></div>
+<p>Cohort <%= @cohort.name %> (Mod <%= @cohort.current_mod %>)</p>
 <% else %>
-<div>Cohort <%= @cohort.name %></div>
-<div>Graduated</div>
+<div>Cohort <%= @cohort.name %> (Graduated)</div>
 <% end %>
 </div>
 <div class="student-index-container">
 <% @users.each do |user| %>
 <div class="student-info-container mod<%=@cohort.current_mod%>">
-<div class="profile-thumbnail"><%= image_tag user.image_url %></div>
-<div><%= link_to user.full_name, user%></div>
+  <div class="student-index-top">
+    <%= image_tag user.image_url, class:"profile-thumbnail"%>
+  </div>
+  <div class="student-index-bottom">
+    <p><%= link_to user.full_name, user%></p>
+  </div>
 </div>
 <% end %>
 </div>
