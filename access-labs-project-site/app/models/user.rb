@@ -32,7 +32,8 @@ class User < ApplicationRecord
     begin
       url = URI.parse(self.image_url)
       Net::HTTP.start(url.host, url.port) do |http|
-        if http.head(url.request_uri)['Content-Type'].start_with? 'image'
+        byebug
+        if http.head(url.request_uri).include? ('jpg')
           self.errors.add(:image_url, "is not an image")
         end
       end
